@@ -1,0 +1,60 @@
+#muhammet Bozkurt
+
+my_project/
+│
+├── data_access/
+│   └── database_operations.py    # Veri Erişim Katmanı
+│
+├── business/
+│   └── customer_manager.py       # İş Katmanı
+│
+└── main.py                        # Sunum Katmanı
+
+Veri Erişim Katmanı (DAL) - database_operations.py
+Bu katman, sqlite3 modülünü kullanarak veritabanına erişimi sağlar ve tüm CRUD (Create, Read, Update, Delete) işlemlerini gerçekleştirir. Bu katmanda aşağıdaki sınıf ve metodlar bulunmaktadır:
+
+DatabaseOperations Sınıfı:
+__init__(self, db_name="mydatabase.db"): Veritabanı bağlantısını kurar ve tabloyu oluşturur.
+create_tables(self): Musteriler adlı tabloyu oluşturur. Bu tabloda MusteriID, Ad, Soyad, Email, Telefon, ve Adres sütunları bulunur.
+insert_customer(self, ad, soyad, email, telefon, adres): Yeni müşteri ekler.
+update_customers(self): Kayıtları günceller.
+delete_customers(self): Kayıtları siler.
+close(self): Veritabanı bağlantısını kapatır.
+
+
+
+İş Katmanı (BLL) - customer_manager.py
+Bu katman, veri erişim katmanındaki işlemleri çağırarak iş kurallarını uygular ve işlem mantığını içerir.
+
+CustomerManager Sınıfı:
+add_customers(self, count=100000): 100.000 müşteri kaydını ekler.
+update_customers(self): Güncelleme işlemini başlatır.
+delete_customers(self): Silme işlemini başlatır.
+close_connection(self): Veritabanı bağlantısını kapatır.
+
+
+Sunum Katmanı - main.py
+Bu katman, kullanıcıdan işlem isteğini alır ve BLL katmanını kullanarak işlemleri başlatır.
+
+main() Fonksiyonu:
+main() fonksiyonu ile müşteri ekleme, güncelleme ve silme işlemleri başlatılır. Her bir işlem için geçen süre hesaplanır ve ekrana yazdırılır.
+Kurulum ve Çalıştırma Adımları
+4.1 Gereksinimler
+Python 3.x
+sqlite3 modülü (Python ile birlikte gelir)
+4.2 Kurulum
+Proje dosyalarını bir klasöre indirin ve yapıyı yukarıdaki gibi oluşturun.
+Python’un kurulu olup olmadığını kontrol edin. Python yoksa Python'un resmi sitesinden kurulum yapabilirsiniz.
+
+Çalıştırma
+Windows Komut İstemi (CMD) veya bir terminal penceresi açın.
+
+main.py dosyasının bulunduğu klasöre gidin:
+
+python main.py
+
+Bu komut, sırasıyla:
+
+100.000 kayıt ekleme
+Kayıtları güncelleme
+Kayıtları silme işlemlerini başlatır ve her işlemin süresini ekrana yazdırır.
